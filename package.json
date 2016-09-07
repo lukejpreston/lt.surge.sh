@@ -37,7 +37,8 @@
     "dev": "postcss-reloader start | react-scripts start",
     "build": "postcss-reloader build | react-scripts build",
     "start": "npm run build && node tasks/server.js",
-    "lint": "node tasks/lint.js"
+    "lint": "node tasks/lint.js",
+    "deploy": "npm version minor && git push --all && git push --tags && npm run build &&  surge -d lt.surge.sh -p build"
   },
   "postcss-reloader": {
     "dir": "./src",
