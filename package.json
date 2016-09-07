@@ -31,12 +31,13 @@
     "redux": "^3.5.2"
   },
   "scripts": {
-    "styles": "postcss-reloader build",
+    "pokeapi": "rm -rf pokedex/pokeapi/ && git clone git@github.com:PokeAPI/pokeapi.git pokedex/pokeapi && node pokedex/generate-data.js",
+    "styles": "postcss-reloader builjd",
     "react": "react-scripts build",
     "dev": "postcss-reloader start | react-scripts start",
     "build": "postcss-reloader build | react-scripts build",
-    "start": "npm run build && node ./tasks/server.js",
-    "lint": "node ./tasks/lint.js"
+    "start": "npm run build && node tasks/server.js",
+    "lint": "node tasks/lint.js"
   },
   "postcss-reloader": {
     "dir": "./src",

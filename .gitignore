@@ -4,6 +4,8 @@ node_modules
 # production
 build
 *.css
+pokedex/pokeapi
+src/data
 
 # misc
 .DS_Store
