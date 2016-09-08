@@ -9,18 +9,20 @@ import { createStore, combineReducers } from 'redux'
 import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer as routing } from 'react-router-redux'
 
+import Pokdex from './pokedex/pokedex-container'
+import pokedex from './pokedex/pokedex-reducer'
+
 let store = createStore(combineReducers({
-  routing
+  routing,
+  pokedex
 }))
 
 const history = syncHistoryWithStore(browserHistory, store)
 
-let comp = <div>hello</div>
-
 render(
   <Provider store={store}>
     <Router history={history} >
-      <Route path='/' component={comp} />
+      <Route path='/' component={Pokdex} />
     </Router>
   </Provider>,
   document.getElementById('root')
