@@ -7,7 +7,19 @@ import reducer from './pokemon-reducer'
 import dispatcher from './pokemon-dispatcher'
 
 let Pokemon = () => {
-  return <div>pokemon</div>
+  let list = null
+  let preview = null
+  // let list = <div className='list'>list</div>
+  // let preview = <div className='preview'>preview</div>
+
+  // let details = null
+  let details = <div className='details'>details</div>
+
+  return <div className='page'>
+    {list}
+    {preview}
+    {details}
+  </div>
 }
 
 Pokemon.propTypes = {
