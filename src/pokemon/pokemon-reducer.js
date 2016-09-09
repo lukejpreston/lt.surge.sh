@@ -1,5 +1,9 @@
 import reducer from '../reducer'
 
 export default reducer({
-  name: 'pokedex'
+  name: 'pokemon',
+  initialState: {
+    list: [],
+    preview: {}
+  }
 })

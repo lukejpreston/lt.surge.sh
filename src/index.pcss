@@ -1,6 +1,10 @@
 @import "./_normalise.pcss";
 @import "./_skeleton.pcss";
 
+body {
+  background-color: color(#efe b(5%));
+}
+
 .page {
   position: absolute;
   margin-left: 2%;
@@ -11,8 +15,11 @@
   & .details,
   & .list,
   & .preview {
+    background-color: color(#efe b(5%));
     border: solid 1px;
+    border-radius: 4px;
     position: absolute;
+    overflow: hidden;
   }
 
   & .details {

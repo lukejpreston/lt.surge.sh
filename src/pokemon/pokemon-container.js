@@ -6,23 +6,19 @@ import { connect } from 'react-redux'
 import reducer from './pokemon-reducer'
 import dispatcher from './pokemon-dispatcher'
 
-let Pokemon = () => {
-  // let list = null
-  // let preview = null
-  let list = <div className='list'>list</div>
-  let preview = <div className='preview'>preview</div>
+import List from './pokemon-list-component'
+import Preview from './pokemon-preview-component'
 
-  let details = null
-  // let details = <div className='details'>details</div>
-
+let Pokemon = ({list, preview}) => {
   return <div className='page'>
-    {list}
-    {preview}
-    {details}
+    <List list={list} />
+    <Preview preview={preview} />
   </div>
 }
 
 Pokemon.propTypes = {
+  list: PropTypes.array.isRequired,
+  preview: PropTypes.object.isRequired
 }
 
 Pokemon = connect(reducer, dispatcher)(Pokemon)
