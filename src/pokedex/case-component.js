@@ -1,3 +1,5 @@
+import './case.css'
+
 import React, { PropTypes } from 'react'
 
 let Case = ({open, status, children}) => {
