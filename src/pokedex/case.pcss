@@ -71,26 +71,25 @@
   }
 }
 
-/*
 .open {
   & .btn {
     border-width: 6px;
-    bottom: #{-$pokeball-width/$pokeball-button-ratio}px;
-    height: #{2 * $pokeball-width/$pokeball-button-ratio}px;
-    margin: 0 0 0 #{-$pokeball-width/($pokeball-button-ratio)}px;
-    width: #{2 * $pokeball-width/$pokeball-button-ratio}px;
+    bottom: calc(-1 * var(--pokeball-width) / var(--pokeball-button-ratio));
+    height: calc(2 * var(--pokeball-width) / var(--pokeball-button-ratio));
+    margin: 0 0 0 calc(-1 * var(--pokeball-width) / var(--pokeball-button-ratio));
+    width: calc(2 * var(--pokeball-width) / var(--pokeball-button-ratio));
   }
 
   & .ball {
-    height: #{$pokeball-width}px;
-    width: #{2 * $pokeball-width}px;
+    height: var(--pokeball-width);
+    width: calc(2 * var(--pokeball-width));
   }
 
   & .top {
     top: -60%;
 
     & .ball {
-      margin: #{-$pokeball-width}px 0 0 #{-$pokeball-width}px;
+      margin: calc(-1 * var(--pokeball-width)) 0 0 calc(-1 * var(--pokeball-width));
     }
   }
 
@@ -98,8 +97,7 @@
     bottom: -60%;
 
     & .ball {
-      margin: 0 0 0 #{-$pokeball-width}px;
+      margin: 0 0 0 calc(-1 * var(--pokeball-width));
     }
   }
 }
-*/
