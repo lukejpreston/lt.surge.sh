@@ -12,13 +12,13 @@ import { syncHistoryWithStore, routerReducer as routing } from 'react-router-red
 import Pokdex from './pokedex/pokedex-container'
 import pokedex from './pokedex/pokedex-reducer'
 
-const Pokemon = () => {
-  return <div>POKEMON</div>
-}
+import Pokemon from './pokemon/pokemon-container'
+import pokemon from './pokemon/pokemon-reducer'
 
 let store = createStore(combineReducers({
   routing,
-  pokedex
+  pokedex,
+  pokemon
 }))
 
 const history = syncHistoryWithStore(browserHistory, store)
