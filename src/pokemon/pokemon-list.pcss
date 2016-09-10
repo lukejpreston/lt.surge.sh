@@ -1,3 +1,10 @@
+:root {
+  --pokeball-red: #ee1515;
+  --pokeball-black: #222224;
+  --pokeball-white: #f0f0f0;
+  --ball-radius: 90px;
+}
+
 .title {
   padding: 1rem;
   margin: 0;
@@ -28,5 +35,101 @@
     cursor: pointer;
     display: inline-block;
     margin-left: 0.5rem;
+  }
+}
+
+.pokemon-row {
+  list-style: none;
+  margin: 0;
+  margin-bottom: 0.75rem;
+
+  & .pokeball,
+  & button {
+    display: inline-flex;
+    margin: 0;
+    vertical-align: top;
+  }
+
+  & .pokeball,
+  & button {
+    margin-left: 0.5rem;
+    padding: 0 10px;
+  }
+
+  & .name {
+    width: 160px;
+    text-align: center;
+
+    & span {
+      width: 100%;
+    }
+  }
+
+  & button:hover .pokeball-icon {
+    & .ball-top,
+    & .ball-btn,
+    & .ball-bottom {
+      border-color: var(--pokeball-black);
+    }
+  }
+
+  & .pokeball-icon {
+    & .ball-top,
+    & .ball-btn,
+    & .ball-bottom {
+      border: solid 1px;
+      border-color: color(#555 tint(50%));
+      background-color: #fff;
+    }
+
+    & .ball-top {
+      height: 12px;
+      width: 24px;
+      border-radius: var(--ball-radius) var(--ball-radius) 0 0;
+    }
+
+    & .ball-btn {
+      height: 12px;
+      width: 24px;
+      margin: auto;
+      margin-top: -6px;
+      height: 8px;
+      width: 8px;
+      border-radius: var(--ball-radius);
+    }
+
+    & .ball-bottom {
+      height: 12px;
+      width: 24px;
+      border-radius: 0 0 var(--ball-radius) var(--ball-radius);
+    }
+
+    &.caught {
+      & .ball-top,
+      & .ball-btn,
+      & .ball-bottom {
+        border-color: var(--pokeball-black);
+      }
+
+      & .ball-top {
+        background-color: var(--pokeball-red);
+      }
+
+      & .ball-btn {
+        background-color: var(--pokeball-white);
+      }
+
+      & .ball-bottom {
+        background-color: var(--pokeball-white);
+      }
+    }
+  }
+
+  & button {
+    background-color: #fff;
+
+    &:hover {
+      background-color: color(#fff b(5%));
+    }
   }
 }

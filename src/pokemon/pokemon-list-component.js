@@ -10,7 +10,12 @@ let List = ({list}) => {
     <PokemonFilter />
     <div className='list-container'>
       <ul>
-        <PokemonRow />
+        <PokemonRow index='001' name='fletchfinder' caught />
+        <PokemonRow index='001' name='fletchfinder' caught={false} />
+        <PokemonRow index='001' name='fletchfinder' caught />
+        <PokemonRow index='001' name='fletchfinder' caught />
+        <PokemonRow index='001' name='fletchfinder' caught />
+        <PokemonRow index='001' name='fletchfinder' caught />
       </ul>
     </div>
   </div>
