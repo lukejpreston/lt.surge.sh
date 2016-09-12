@@ -23,6 +23,7 @@ function create (base, file, type) {
   let src = base64Img.base64Sync(path.join(base, file))
   let output = mustache.render(TEMPLATE, {
     name: '$' + changeCase.pascal(file.replace('.png', '')),
+    alt: changeCase.title(file.replace('.png', '')),
     type,
     src
   })
