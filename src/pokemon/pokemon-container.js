@@ -18,7 +18,8 @@ let Pokemon = ({list, preview}) => {
 
 Pokemon.propTypes = {
   list: PropTypes.array.isRequired,
-  preview: PropTypes.object.isRequired
+  preview: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired
 }
 
 Pokemon = connect(reducer, dispatcher)(Pokemon)
