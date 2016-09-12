@@ -22,7 +22,7 @@ if (!fs.existsSync(OUTPUT_PATH)) {
 function create (base, file, type) {
   let src = base64Img.base64Sync(path.join(base, file))
   let output = mustache.render(TEMPLATE, {
-    name: changeCase.pascal(file.replace('.png', '')),
+    name: '$' + changeCase.pascal(file.replace('.png', '')),
     type,
     src
   })
