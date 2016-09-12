@@ -5,6 +5,8 @@ export default reducer({
   initialState: {
     list: [],
     preview: {
+      to: '/pokemon/lt.surge',
+      image: require('../sprites/thunder-stone.json'),
       name: 'lt. Surge',
       flavour: 'This is probably the best pokedex you will find'
     }

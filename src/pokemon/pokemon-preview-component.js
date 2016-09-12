@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react'
 
 import { Link } from 'react-router'
-import Pokemon from '../sprites/1.js'
 
 let Preview = ({preview}) => {
   return <div className='preview'>
-    <Pokemon />
+    <img src={preview.image.src} />
     <span>{preview.name}</span>
     <span>{preview.flavour}</span>
-    <Link to={`/pokemon/${preview.name.toLowerCase()}`}>MORE</Link>
+    <Link to={preview.to}>MORE</Link>
   </div>
 }
 
