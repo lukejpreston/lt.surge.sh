@@ -7,7 +7,7 @@ export default (dispatch) => {
         type: 'open',
         status: 'open'
       })
-      browserHistory.push('/pokemon')
+      browserHistory.push('/menu')
     }
   }
 }

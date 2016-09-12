@@ -1,0 +1,51 @@
+:root {
+  --pokemon: #ee8130;
+  --items: #6390f0;
+  --egg-groups: #7ac74c;
+}
+
+.menu {
+  width: 100%;
+  height: 100%;
+
+  & ul {
+    list-style: none;
+    width: 60%;
+    margin: auto;
+    transform: translateY(100%);
+
+    & .button {
+      width: 100%;
+      margin: 0;
+      color: #555;
+
+      &:hover {
+        color: #fff;
+      }
+
+      &.pokemon {
+        background-color: color(var(--pokemon) tint(25%));
+
+        &:hover {
+          background-color: var(--pokemon);
+        }
+      }
+
+      &.items {
+        background-color: color(var(--items) tint(25%));
+
+        &:hover {
+          background-color: var(--items);
+        }
+      }
+
+      &.egg-groups {
+        background-color: color(var(--egg-groups) tint(25%));
+
+        &:hover {
+          background-color: var(--egg-groups);
+        }
+      }
+    }
+  }
+}

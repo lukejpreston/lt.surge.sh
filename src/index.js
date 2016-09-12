@@ -15,6 +15,8 @@ import pokedex from './pokedex/pokedex-reducer'
 import Pokemon from './pokemon/pokemon-container'
 import pokemon from './pokemon/pokemon-reducer'
 
+import Menu from './menu/menu-container'
+
 let store = createStore(combineReducers({
   routing,
   pokedex,
@@ -27,6 +29,7 @@ render(
   <Provider store={store}>
     <Router history={history} >
       <Route path='/' component={Pokdex}>
+        <Route path='menu' component={Menu} />
         <Route path='pokemon' component={Pokemon} />
         <Route path='pokemon/preview/:pokemon' component={Pokemon} />
       </Route>
