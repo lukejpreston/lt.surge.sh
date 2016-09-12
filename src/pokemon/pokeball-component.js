@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react'
 
 const Pokeball = ({caught}) => {
   let status = caught ? 'caught' : 'uncaught'
-  console.log(caught, status)
-  return <button>
+  return <button className='pokeball'>
     <div className={`pokeball-icon ${status}`}>
       <div className='ball-top' />
       <div className='ball-bottom'>

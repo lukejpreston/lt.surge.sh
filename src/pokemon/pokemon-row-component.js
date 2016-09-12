@@ -1,14 +1,17 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
 import Pokeball from './pokeball-component'
 
 let PokemonRow = ({index, name, caught}) => {
   return <li className='pokemon-row'>
-    <Pokeball caught={caught} />
-    <button className='index'>{index}</button>
-    <button className='name'>
-      <span>{name}</span>
-    </button>
+    <div className='pokemon-row-container'>
+      <Pokeball caught={caught} />
+      <Link to={`/pokemon/${name}`} className='button info'>
+        <span className='index'>{index}</span>
+        <span className='name'>{name}</span>
+      </Link>
+    </div>
   </li>
 }
 
