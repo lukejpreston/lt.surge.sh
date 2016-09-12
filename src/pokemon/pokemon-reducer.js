@@ -12,13 +12,6 @@ export default reducer({
     }
   },
   reduce (state, action) {
-    if (action.type === '@@router/LOCATION_CHANGE' && action.payload.pathname.includes('/pokemon/')) return {
-      list: state.list,
-      preview: {
-        index: '001',
-        name: 'Fletchfinder',
-        flavour: 'This is Fletchfinder, he is a cool pokemon because his name is the longest name is the known universe, trust me it is super long, like longer than pikachu and everything!'
-      }
-    }
+    if (action.type === '@@router/LOCATION_CHANGE' && action.payload.pathname.includes('/pokemon/')) console.log(action.payload.pathname)
   }
 })
