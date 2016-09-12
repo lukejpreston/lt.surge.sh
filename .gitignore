@@ -6,6 +6,7 @@ build
 *.css
 pokedex/pokeapi
 src/data
+src/sprites
 
 # misc
 .DS_Store
