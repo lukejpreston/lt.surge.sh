@@ -14,6 +14,16 @@ const pokemon = Pokemon.filter(p => {
 const pokemonSpeciesNames = filterLanguage(PokemonSpeciesNames)
 const pokemonSpeciesFlavour = filterLanguage(PokemonSpeciesFlavour)
 
+const GENERATIONS = {
+  I: '1',
+  II: '2',
+  III: '3',
+  IV: '4',
+  V: '5',
+  VI: '6'
+}
+let generations = []
+
 function getIndex (number) {
   if (number < 10) return '00' + number
   else if (number < 100) return '0' + number
@@ -24,6 +34,12 @@ function getPokemonName (p) {
   return pokemonSpeciesNames.filter(psn => {
     return psn.pokemon_species_id === p.species_id
   })[0].name
+}
+
+function getFlavour (p) {
+  return pokemonSpeciesFlavour.filter(psf => {
+    return psf.species_id === p.species_id
+  })[0].flavor_text.replace(/"/g, '')
 }
 
 function pokemonList () {
@@ -47,29 +63,23 @@ function getPokemon (name) {
   let poke = pokemon.filter(p => {
     return p.identifier === name
   })[0]
-
-  let speciesName = getPokemonName(poke)
-
   return {
-    name: speciesName,
+    name: getPokemonName(poke),
     sprite: poke.id,
-    flavour: 'Yup Yup'
+    flavour: getFlavour(poke)
   }
 }
-
-const GENERATIONS = ['I', 'II', 'III', 'IV', 'V', 'VI']
-let generations = []
 
 function setGenerations (gens) {
   if (
     typeof gens === 'string' &&
     !generations.includes(gens) &&
-    GENERATIONS.includes(gens.toUpperCase())
+    Object.keys(GENERATIONS).includes(gens.toUpperCase())
   ) generations.push(gens)
 }
 
 export default {
-  generations: GENERATIONS,
+  generations: Object.keys(GENERATIONS),
   setGenerations,
   pokemon: getPokemon,
   pokemonList
