@@ -1,0 +1,36 @@
+:root {
+  --electric: #f7d02c;
+}
+
+.preview.pokemon {
+  overflow-y: scroll;
+
+  & .img-container {
+    width: 90%;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+  }
+
+  & .title {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  & .button-container,
+  & .flavour {
+    padding: 2rem;
+  }
+
+  & .button {
+    width: 100%;
+    color: #fff;
+    border-color: #fff;
+    background-color: color(var(--electric) tint(25%));
+
+    &:hover {
+      background-color: var(--electric);
+    }
+  }
+}
