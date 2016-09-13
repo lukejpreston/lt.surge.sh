@@ -10,7 +10,7 @@ let Menu = () => {
     <ul>
       <li className='generations button'>
         <span className='gen-title' >Generations</span>
-        {dexter.generations().map(gen => {
+        {dexter.generations.map(gen => {
           return <div className='gen' key={gen}>
             <input id={gen} type='checkbox' />
             <label htmlFor={gen}>{gen}</label>

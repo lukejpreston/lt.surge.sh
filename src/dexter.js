@@ -20,6 +20,12 @@ function getIndex (number) {
   return '' + number
 }
 
+function getPokemonName (p) {
+  return pokemonSpeciesNames.filter(psn => {
+    return psn.pokemon_species_id === p.species_id
+  })[0].name
+}
+
 function pokemonList () {
   return pokemon
     .filter(p => {
@@ -27,9 +33,7 @@ function pokemonList () {
       return id <= 718
     })
     .map((p, index) => {
-      let speciesName = pokemonSpeciesNames.filter(psn => {
-        return psn.pokemon_species_id === p.species_id
-      })[0].name
+      let speciesName = getPokemonName(p)
       return {
         index: getIndex(index + 1),
         name: speciesName,
@@ -38,20 +42,35 @@ function pokemonList () {
     })
 }
 
-function getPokemon () {
+function getPokemon (name) {
+  name = name.toLowerCase()
+  let poke = pokemon.filter(p => {
+    return p.identifier === name
+  })[0]
+
+  let speciesName = getPokemonName(poke)
+
   return {
-    name: 'Bulbasaur',
-    sprite: '1',
+    name: speciesName,
+    sprite: poke.id,
     flavour: 'Yup Yup'
   }
 }
 
-function generations () {
-  return ['I', 'II', 'III', 'IV', 'V', 'VI']
+const GENERATIONS = ['I', 'II', 'III', 'IV', 'V', 'VI']
+let generations = []
+
+function setGenerations (gens) {
+  if (
+    typeof gens === 'string' &&
+    !generations.includes(gens) &&
+    GENERATIONS.includes(gens.toUpperCase())
+  ) generations.push(gens)
 }
 
 export default {
-  generations,
+  generations: GENERATIONS,
+  setGenerations,
   pokemon: getPokemon,
   pokemonList
 }
