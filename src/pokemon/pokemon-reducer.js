@@ -1,9 +1,10 @@
 import reducer from '../reducer'
+import dexter from '../dexter'
 
 export default reducer({
   name: 'pokemon',
   initialState: {
-    list: [],
+    list: dexter.pokemonList(),
     preview: {
       to: '/pokemon/lt.surge',
       image: require('../sprites/thunder-stone.json'),
@@ -12,6 +13,9 @@ export default reducer({
     }
   },
   reduce (state, action) {
-    if (action.type === '@@router/LOCATION_CHANGE' && action.payload.pathname.includes('/pokemon/')) console.log(action.payload.pathname)
+    if (action.type === '@@router/LOCATION_CHANGE' && action.payload.pathname.includes('/pokemon/preview')) {
+      let name = action.payload.pathname.replace('/pokemon/preview/', '')
+      console.log(name)
+    }
   }
 })
