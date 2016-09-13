@@ -30,8 +30,11 @@ render(
     <Router history={history} >
       <Route path='/' component={Pokdex}>
         <Route path='menu' component={Menu} />
-        <Route path='pokemon' component={Pokemon} />
-        <Route path='pokemon/preview/:pokemon' component={Pokemon} />
+        <Route path='pokemon' component={Pokemon}>
+          <Route path=':pokemon' component={Pokemon}>
+            <Route path=':pokemon' component={Pokemon} />
+          </Route>
+        </Route>
       </Route>
     </Router>
   </Provider>,
