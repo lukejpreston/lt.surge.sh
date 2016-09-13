@@ -14,8 +14,17 @@ export default reducer({
   },
   reduce (state, action) {
     if (action.type === '@@router/LOCATION_CHANGE' && action.payload.pathname.includes('/pokemon/preview')) {
-      let name = action.payload.pathname.replace('/pokemon/preview/', '')
-      console.log(name)
+      let name = action.payload.pathname.replace('/pokemon/preview/', '').toLowerCase()
+      let pokemon = dexter.pokemon(name)
+      return {
+        list: state.list,
+        preview: {
+          to: `/pokemon/${name}`,
+          image: require(`../sprites/${pokemon.sprite}.json`),
+          name: pokemon.name,
+          flavour: pokemon.flavour
+        }
+      }
     }
   }
 })

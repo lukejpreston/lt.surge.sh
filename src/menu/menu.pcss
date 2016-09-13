@@ -2,6 +2,7 @@
   --pokemon: #ee8130;
   --items: #6390f0;
   --egg-groups: #7ac74c;
+  --generations: #735797;
 }
 
 .menu {
@@ -12,7 +13,7 @@
     list-style: none;
     width: 60%;
     margin: auto;
-    transform: translateY(100%);
+    transform: translateY(75%);
 
     & .button {
       width: 100%;
@@ -46,6 +47,22 @@
           background-color: var(--egg-groups);
         }
       }
+
+      &.generations {
+        margin-bottom: 1rem;
+        background-color: color(var(--generations) tint(25%));
+
+        &:hover {
+          background-color: var(--generations);
+        }
+      }
+    }
+
+    & .gen-title,
+    & .gen,
+    & .gen label {
+      display: inline-block;
+      margin-left: 1rem;
     }
   }
 }
