@@ -36,7 +36,9 @@ export default reducer({
         return {
           list: initialState.list,
           preview: initialState.preview,
-          details: {}
+          details: {
+            generations: ['I', 'II']
+          }
         }
       } else if (showDefault) {
         return initialState
