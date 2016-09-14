@@ -82,9 +82,18 @@
             background-color: var(--poison);
           }
         }
+
+        &.water {
+          color: #fff;
+          background-color: color(var(--water) tint(15%));
+
+          &:hover {
+            background-color: var(--water);
+          }
+        }
       }
 
-      &.two {
+      &-2 {
         & .type {
           width: 50%;
         }

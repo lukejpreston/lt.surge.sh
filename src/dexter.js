@@ -1,6 +1,9 @@
 import Pokemon from './data/pokemon.json'
 import PokemonSpeciesNames from './data/pokemon_species_names.json'
 import PokemonSpeciesFlavour from './data/pokemon_species_flavor_text.json'
+import Types from './data/types.json'
+import TypeNames from './data/type_names.json'
+import PokemonTypes from './data/pokemon_types.json'
 
 function filterLanguage (ls) {
   return ls.filter(l => {
@@ -73,7 +76,7 @@ function getPokemon (name) {
 
 function getPokemonDetails (name) {
   return {
-    types: ['grass', 'poison']
+    types: ['water']
   }
 }
 

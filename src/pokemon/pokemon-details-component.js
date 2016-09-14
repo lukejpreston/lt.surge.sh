@@ -13,10 +13,11 @@ let PokemonDetails = ({details, goBack}) => {
     <div className='content'>
       <img className='block image' src={details.image.src} alt={details.image.alt} />
       <span className='block name'>{details.name}</span>
-      <div className='block types two'>
-        <button className='type grass'>grass</button>
-        <button className='type poison'>poision</button>
-      </div>
+      <div className={`block types types-${details.types.length}`}>{
+          details.types.map(t => {
+            return <button key={`type-${t}`} className={`type ${t}`}>{t}</button>
+          })
+      }</div>
       <span className='block flavour'>{details.flavour}</span>
     </div>
   </div>
