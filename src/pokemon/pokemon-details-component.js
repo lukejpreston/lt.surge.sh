@@ -15,7 +15,7 @@ let PokemonDetails = ({details, goBack}) => {
       <span className='block name'>{details.name}</span>
       <div className={`block types types-${details.types.length}`}>{
           details.types.map(t => {
-            return <button key={`type-${t}`} className={`type ${t}`}>{t}</button>
+            return <button key={`type-${t}`} className={`type ${t.toLowerCase()}`}>{t}</button>
           })
       }</div>
       <span className='block flavour'>{details.flavour}</span>

@@ -1,7 +1,6 @@
 import Pokemon from './data/pokemon.json'
 import PokemonSpeciesNames from './data/pokemon_species_names.json'
 import PokemonSpeciesFlavour from './data/pokemon_species_flavor_text.json'
-import Types from './data/types.json'
 import TypeNames from './data/type_names.json'
 import PokemonTypes from './data/pokemon_types.json'
 
@@ -16,6 +15,7 @@ const pokemon = Pokemon.filter(p => {
 })
 const pokemonSpeciesNames = filterLanguage(PokemonSpeciesNames)
 const pokemonSpeciesFlavour = filterLanguage(PokemonSpeciesFlavour)
+const typeNames = filterLanguage(TypeNames)
 
 const GENERATIONS = {
   I: '1',
@@ -68,15 +68,30 @@ function getPokemon (name) {
   })[0]
   let image = require(`./sprites/${poke.id}.json`)
   return {
+    id: poke.id,
     name: getPokemonName(poke),
     image,
     flavour: getFlavour(poke)
   }
 }
 
+function getTypes (poke) {
+  let types = PokemonTypes
+    .filter(pt => {
+      return pt.pokemon_id === poke.id
+    })
+    .map(pt => {
+      return typeNames.filter(tn => {
+        return pt.type_id === tn.type_id
+      })[0].name
+    })
+  return types
+}
+
 function getPokemonDetails (name) {
+  let poke = getPokemon(name)
   return {
-    types: ['water']
+    types: getTypes(poke)
   }
 }
 
