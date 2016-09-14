@@ -1,22 +1,11 @@
 import './menu.css'
 
-import dexter from '../dexter'
-
 import React from 'react'
 import { Link } from 'react-router'
 
 let Menu = () => {
   return <div className='menu'>
     <ul>
-      <li className='generations button'>
-        <span className='gen-title' >Generations</span>
-        {dexter.generations.map(gen => {
-          return <div className='gen' key={gen}>
-            <input id={gen} type='checkbox' />
-            <label htmlFor={gen}>{gen}</label>
-          </div>
-        })}
-      </li>
       <li>
         <Link
           to='/pokemon'
@@ -36,6 +25,13 @@ let Menu = () => {
           to='/egg-groups'
           className='button egg-groups'>
           EGG GROUPS
+        </Link>
+      </li>
+      <li>
+        <Link
+          to='/generations'
+          className='button generations'>
+          GENERATIONS
         </Link>
       </li>
     </ul>
