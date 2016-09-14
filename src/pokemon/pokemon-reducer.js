@@ -27,7 +27,7 @@ export default reducer({
           list: state.list,
           preview: {
             to: `/pokemon/${name}`,
-            image: require(`../sprites/${pokemon.sprite}.json`),
+            image: pokemon.image,
             name: pokemon.name,
             flavour: pokemon.flavour
           }
@@ -35,13 +35,15 @@ export default reducer({
       } else if (showDetails) {
         let name = action.payload.pathname.replace('/pokemon/', '').toLowerCase()
         let pokemon = dexter.pokemon(name)
+        let details = dexter.pokemonDetails(name)
         return {
           list: initialState.list,
           preview: initialState.preview,
           details: {
-            image: require(`../sprites/${pokemon.sprite}.json`),
+            image: pokemon.image,
             name: pokemon.name,
-            flavour: pokemon.flavour
+            flavour: pokemon.flavour,
+            types: details.types
           }
         }
       } else if (showDefault) {

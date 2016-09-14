@@ -63,10 +63,17 @@ function getPokemon (name) {
   let poke = pokemon.filter(p => {
     return p.identifier === name
   })[0]
+  let image = require(`./sprites/${poke.id}.json`)
   return {
     name: getPokemonName(poke),
-    sprite: poke.id,
+    image,
     flavour: getFlavour(poke)
+  }
+}
+
+function getPokemonDetails (name) {
+  return {
+    types: ['grass', 'poison']
   }
 }
 
@@ -82,5 +89,6 @@ export default {
   generations: Object.keys(GENERATIONS),
   setGenerations,
   pokemon: getPokemon,
+  pokemonDetails: getPokemonDetails,
   pokemonList
 }
