@@ -5,6 +5,9 @@ import TypeNames from './data/type_names.json'
 import PokemonTypes from './data/pokemon_types.json'
 import EggGroups from './data/egg_group_prose.json'
 import PokemonEggGroups from './data/pokemon_egg_groups.json'
+import Abilities from './data/ability_names.json'
+import AbilityProes from './data/ability_prose.json'
+import PokemonAbilities from './data/pokemon_abilities.json'
 
 function filterLanguage (ls) {
   return ls.filter(l => {
@@ -19,10 +22,8 @@ const pokemonSpeciesNames = filterLanguage(PokemonSpeciesNames)
 const pokemonSpeciesFlavour = filterLanguage(PokemonSpeciesFlavour)
 const typeNames = filterLanguage(TypeNames)
 const eggGroups = filterLanguage(EggGroups)
-
-console.log(eggGroups.map(eg => {
-  return eg.name
-}))
+const abilities = filterLanguage(Abilities)
+const abilityProes = filterLanguage(AbilityProes)
 
 const GENERATIONS = {
   I: '1',
@@ -76,7 +77,7 @@ function getPokemon (name) {
   let image = require(`./sprites/${poke.id}.json`)
   return {
     id: poke.id,
-    species_id: poke.species_id,
+    speciesId: poke.species_id,
     name: getPokemonName(poke),
     image,
     flavour: getFlavour(poke)
@@ -99,7 +100,7 @@ function getTypes (poke) {
 function getEggGroups (poke) {
   return PokemonEggGroups
     .filter(peg => {
-      return peg.species_id === poke.species_id
+      return peg.species_id === poke.speciesId
     })
     .map(peg => {
       return eggGroups.filter(eg => {
@@ -108,11 +109,37 @@ function getEggGroups (poke) {
     })
 }
 
+function getAbilities (poke) {
+  return PokemonAbilities
+    .filter(pa => {
+      return pa.pokemon_id === poke.id
+    })
+    .map(pa => {
+      let name = abilities.filter(a => {
+        return a.ability_id === pa.ability_id
+      })[0].name
+
+      let prose = abilityProes.filter(a => {
+        return a.ability_id === pa.ability_id
+      })[0]
+      let shortEffect = prose.short_effect
+      let effect = prose.short_effect
+
+      return {
+        hidden: pa.is_hidden === '1',
+        name,
+        shortEffect,
+        effect
+      }
+    })
+}
+
 function getPokemonDetails (name) {
   let poke = getPokemon(name)
   return {
     types: getTypes(poke),
-    eggGroups: getEggGroups(poke)
+    eggGroups: getEggGroups(poke),
+    abilities: getAbilities(poke)
   }
 }
 

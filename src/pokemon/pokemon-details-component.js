@@ -24,6 +24,18 @@ let PokemonDetails = ({details, goBack}) => {
             return <button key={`egg-group-${item}`} className={`egg-group ${item.toLowerCase()}`}>{item}</button>
           })
       }</div>
+      <div className='block abilities'>{
+          details.abilities.map(item => {
+            let hidden = null
+            if (item.hidden) hidden = <button>hidden</button>
+            return <div key={`abilitiy-${item.name}`}>
+              <button>{item.name}</button>
+              {hidden}
+              <span>{item.effect}</span>
+              <span>{item.shortEffect}</span>
+            </div>
+          })
+      }</div>
     </div>
   </div>
 }
