@@ -33,11 +33,15 @@ export default reducer({
           }
         }
       } else if (showDetails) {
+        let name = action.payload.pathname.replace('/pokemon/', '').toLowerCase()
+        let pokemon = dexter.pokemon(name)
         return {
           list: initialState.list,
           preview: initialState.preview,
           details: {
-            generations: ['I', 'II']
+            image: require(`../sprites/${pokemon.sprite}.json`),
+            name: pokemon.name,
+            flavour: pokemon.flavour
           }
         }
       } else if (showDefault) {
