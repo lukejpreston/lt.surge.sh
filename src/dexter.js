@@ -8,6 +8,8 @@ import PokemonEggGroups from './data/pokemon_egg_groups.json'
 import Abilities from './data/ability_names.json'
 import AbilityProes from './data/ability_prose.json'
 import PokemonAbilities from './data/pokemon_abilities.json'
+import Evolution from './data/pokemon_evolution.json'
+import EvolutionTrigger from './data/evolution_trigger_prose.json'
 
 function filterLanguage (ls) {
   return ls.filter(l => {
@@ -24,6 +26,7 @@ const typeNames = filterLanguage(TypeNames)
 const eggGroups = filterLanguage(EggGroups)
 const abilities = filterLanguage(Abilities)
 const abilityProes = filterLanguage(AbilityProes)
+const evolutionTrigger = filterLanguage(EvolutionTrigger)
 
 const GENERATIONS = {
   I: '1',
@@ -53,23 +56,20 @@ function getFlavour (p) {
   })[0].flavor_text.replace(/"/g, '')
 }
 
-function pokemonList () {
-  return pokemon
-    .filter(p => {
-      let id = parseInt(p.id, 10)
-      return id <= 718
-    })
-    .map((p, index) => {
-      let speciesName = getPokemonName(p)
-      return {
-        index: getIndex(index + 1),
-        name: speciesName,
-        href: speciesName.toLowerCase()
-      }
-    })
-}
+const pokemonList = pokemon
+  .filter(p => {
+    return p.is_default === '1'
+  })
+  .map((p, index) => {
+    let speciesName = getPokemonName(p)
+    return {
+      index: getIndex(index + 1),
+      name: speciesName,
+      href: speciesName.toLowerCase()
+    }
+  })
 
-function getPokemon (name) {
+function getPokemonByNmae (name) {
   name = name.toLowerCase()
   let poke = pokemon.filter(p => {
     return p.identifier === name
@@ -82,6 +82,13 @@ function getPokemon (name) {
     image,
     flavour: getFlavour(poke)
   }
+}
+
+function getPokemonBySpecies (id) {
+  let poke = pokemon.filter(p => {
+    return p.species_id === id
+  })[0]
+  return getPokemonByNmae(poke.name)
 }
 
 function getTypes (poke) {
@@ -134,12 +141,22 @@ function getAbilities (poke) {
     })
 }
 
+function getEvolution (poke) {
+  let evo = Evolution
+    .filter(e => {
+      return e.id === poke.speciesId
+    })
+  console.log(evo)
+  return evo
+}
+
 function getPokemonDetails (name) {
-  let poke = getPokemon(name)
+  let poke = getPokemonByNmae(name)
   return {
     types: getTypes(poke),
     eggGroups: getEggGroups(poke),
-    abilities: getAbilities(poke)
+    abilities: getAbilities(poke),
+    evolution: getEvolution(poke)
   }
 }
 
@@ -154,7 +171,7 @@ function setGenerations (gens) {
 export default {
   generations: Object.keys(GENERATIONS),
   setGenerations,
-  pokemon: getPokemon,
+  pokemon: getPokemonByNmae,
   pokemonDetails: getPokemonDetails,
   pokemonList
 }

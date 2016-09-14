@@ -2,7 +2,7 @@ import reducer from '../reducer'
 import dexter from '../dexter'
 
 let initialState = {
-  list: dexter.pokemonList(),
+  list: dexter.pokemonList,
   preview: {
     to: '/pokemon/lt.surge',
     image: require('../sprites/thunder-stone.json'),
