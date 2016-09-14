@@ -1,10 +1,17 @@
+import './pokemon-details.css'
+
 import React, { PropTypes } from 'react'
 
 import sprite from '../sprites/1.json'
 
-let PokemonDetails = ({details}) => {
-  return <div className='details'>
-    <button>BACK</button>
+let PokemonDetails = ({details, goBack}) => {
+  return <div className='details pokemon'>
+    <button
+      onClick={goBack}
+      className='back'
+      >
+      BACK
+    </button>
     <img src={sprite.src} alt='bulbasaur' />
     <span>Bulbasaur</span>
     <button className='button'>
@@ -129,7 +136,8 @@ let PokemonDetails = ({details}) => {
 }
 
 PokemonDetails.propTypes = {
-  details: PropTypes.object.isRequired
+  details: PropTypes.object.isRequired,
+  goBack: PropTypes.func.isRequired
 }
 
 export default PokemonDetails

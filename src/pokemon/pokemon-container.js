@@ -10,9 +10,9 @@ import List from './pokemon-list-component'
 import Preview from './pokemon-preview-component'
 import Details from './pokemon-details-component'
 
-let Pokemon = ({list, preview, details}) => {
+let Pokemon = ({list, preview, details, goBack}) => {
   let content = null
-  if (details) content = <Details details={details} />
+  if (details) content = <Details details={details} goBack={goBack} />
   else content = <div>
     <List list={list} />
     <Preview preview={preview} />
@@ -25,7 +25,8 @@ let Pokemon = ({list, preview, details}) => {
 Pokemon.propTypes = {
   list: PropTypes.array,
   preview: PropTypes.object,
-  details: PropTypes.object
+  details: PropTypes.object,
+  goBack: PropTypes.func.isRequired
 }
 
 Pokemon = connect(reducer, dispatcher)(Pokemon)

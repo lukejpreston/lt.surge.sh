@@ -1,10 +1,9 @@
+import { browserHistory } from 'react-router'
+
 export default (dispatch) => {
   return {
-    changeTo (name) {
-      dispatch({
-        type: 'change',
-        name
-      })
+    goBack () {
+      browserHistory.goBack()
     }
   }
 }

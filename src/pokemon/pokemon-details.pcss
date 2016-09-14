@@ -1,0 +1,19 @@
+:root {
+  --back: #735797;
+}
+
+.details.pokemon {
+  overflow-y: scroll;
+
+  & .back {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    color: #fff;
+    background-color: color(var(--back) tint(15%));
+
+    &:hover {
+      background-color: var(--back);
+    }
+  }
+}
