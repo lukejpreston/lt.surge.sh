@@ -39,12 +39,7 @@ export default reducer({
         return {
           list: initialState.list,
           preview: initialState.preview,
-          details: {
-            image: pokemon.image,
-            name: pokemon.name,
-            flavour: pokemon.flavour,
-            types: details.types
-          }
+          details: Object.assign({}, pokemon, details)
         }
       } else if (showDefault) {
         return initialState

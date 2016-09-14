@@ -3,6 +3,8 @@ import PokemonSpeciesNames from './data/pokemon_species_names.json'
 import PokemonSpeciesFlavour from './data/pokemon_species_flavor_text.json'
 import TypeNames from './data/type_names.json'
 import PokemonTypes from './data/pokemon_types.json'
+import EggGroups from './data/egg_group_prose.json'
+import PokemonEggGroups from './data/pokemon_egg_groups.json'
 
 function filterLanguage (ls) {
   return ls.filter(l => {
@@ -16,6 +18,11 @@ const pokemon = Pokemon.filter(p => {
 const pokemonSpeciesNames = filterLanguage(PokemonSpeciesNames)
 const pokemonSpeciesFlavour = filterLanguage(PokemonSpeciesFlavour)
 const typeNames = filterLanguage(TypeNames)
+const eggGroups = filterLanguage(EggGroups)
+
+console.log(eggGroups.map(eg => {
+  return eg.name
+}))
 
 const GENERATIONS = {
   I: '1',
@@ -69,6 +76,7 @@ function getPokemon (name) {
   let image = require(`./sprites/${poke.id}.json`)
   return {
     id: poke.id,
+    species_id: poke.species_id,
     name: getPokemonName(poke),
     image,
     flavour: getFlavour(poke)
@@ -88,10 +96,23 @@ function getTypes (poke) {
   return types
 }
 
+function getEggGroups (poke) {
+  return PokemonEggGroups
+    .filter(peg => {
+      return peg.species_id === poke.species_id
+    })
+    .map(peg => {
+      return eggGroups.filter(eg => {
+        return eg.egg_group_id === peg.egg_group_id
+      })[0].name
+    })
+}
+
 function getPokemonDetails (name) {
   let poke = getPokemon(name)
   return {
-    types: getTypes(poke)
+    types: getTypes(poke),
+    eggGroups: getEggGroups(poke)
   }
 }
 

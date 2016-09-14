@@ -18,6 +18,16 @@
   --dark: #705746;
   --steel: #b7b7ce;
   --fairy: #d685ad;
+  --monster: #a8a77a;
+  --water-1: #6390f0;
+  --water-2: color(#6390f0 tint(15%));
+  --water-3: color(#6390f0 tint(30%));
+  --field: #e2bf65;
+  --human-like: #f95587;
+  --mineral: #b7b7ce;
+  --amorphous: #735797;
+  --ditto: #c22e28;
+  --undiscovered: #f7d02c;
 }
 
 .details.pokemon {
@@ -60,7 +70,9 @@
       font-size: 20px;
     }
 
+    & .egg-groups,
     & .types {
+      & .egg-group,
       & .type {
         width: 100%;
         margin: 0;
@@ -226,10 +238,101 @@
             background-color: var(--fairy);
           }
         }
+
+        &.monster {
+          color: #fff;
+          background-color: var(--monster);
+
+          &:hover {
+            background-color: var(--monster);
+          }
+        }
+
+        &.water-1 {
+          color: #fff;
+          background-color: var(--water-1);
+
+          &:hover {
+            background-color: var(--water-1);
+          }
+        }
+
+        &.water-2 {
+          color: #fff;
+          background-color: var(--water-2);
+
+          &:hover {
+            background-color: var(--water-2);
+          }
+        }
+
+        &.water-3 {
+          color: #fff;
+          background-color: var(--water-3);
+
+          &:hover {
+            background-color: var(--water-3);
+          }
+        }
+
+        &.field {
+          color: #fff;
+          background-color: var(--field);
+
+          &:hover {
+            background-color: var(--field);
+          }
+        }
+
+        &.human-like {
+          color: #fff;
+          background-color: var(--human-like);
+
+          &:hover {
+            background-color: var(--human-like);
+          }
+        }
+
+        &.mineral {
+          color: #fff;
+          background-color: var(--mineral);
+
+          &:hover {
+            background-color: var(--mineral);
+          }
+        }
+
+        &.amorphous {
+          color: #fff;
+          background-color: var(--amorphous);
+
+          &:hover {
+            background-color: var(--amorphous);
+          }
+        }
+
+        &.ditto {
+          color: #fff;
+          background-color: var(--ditto);
+
+          &:hover {
+            background-color: var(--ditto);
+          }
+        }
+
+        &.undiscovered {
+          color: #fff;
+          background-color: var(--undiscovered);
+
+          &:hover {
+            background-color: var(--undiscovered);
+          }
+        }
       }
 
       &-2 {
-        & .type {
+        & .type,
+        & .egg-group {
           width: 50%;
         }
       }
