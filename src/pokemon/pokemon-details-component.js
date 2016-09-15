@@ -3,6 +3,8 @@ import './pokemon-details.css'
 import React, { PropTypes } from 'react'
 
 let PokemonDetails = ({details, goBack}) => {
+  let chainPoke = 0
+  let chainLink = 0
   return <div className='details pokemon'>
     <button
       onClick={goBack}
@@ -34,6 +36,19 @@ let PokemonDetails = ({details, goBack}) => {
               <span>{item.effect}</span>
               <span>{item.shortEffect}</span>
             </div>
+          })
+      }</div>
+      <div className='block evolution'>{
+          details.evolution.pokes.concat(details.evolution.links).map((e, index) => {
+            if (index % 2 === 0) {
+              let poke = details.evolution.pokes[chainPoke]
+              chainPoke += 1
+              return <img key={`chain-${index}`} className='image' src={poke.image.src} alt={poke.image.alt} />
+            } else {
+              let link = details.evolution.links[chainLink]
+              chainLink += 1
+            }
+            return null
           })
       }</div>
     </div>

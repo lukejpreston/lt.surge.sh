@@ -10,6 +10,7 @@ import AbilityProes from './data/ability_prose.json'
 import PokemonAbilities from './data/pokemon_abilities.json'
 import Evolution from './data/pokemon_evolution.json'
 import EvolutionTrigger from './data/evolution_trigger_prose.json'
+import PokemonSpecies from './data/pokemon_species.json'
 
 function filterLanguage (ls) {
   return ls.filter(l => {
@@ -37,6 +38,13 @@ const GENERATIONS = {
   VI: '6'
 }
 let generations = []
+
+let chains = []
+PokemonSpecies.forEach(ps => {
+  let chainId = parseInt(ps.evolution_chain_id, 10)
+  chains[chainId] = chains[chainId] || []
+  chains[chainId].push(ps)
+})
 
 function getIndex (number) {
   if (number < 10) return '00' + number
@@ -69,7 +77,7 @@ const pokemonList = pokemon
     }
   })
 
-function getPokemonByNmae (name) {
+function getPokemonByName (name) {
   name = name.toLowerCase()
   let poke = pokemon.filter(p => {
     return p.identifier === name
@@ -88,7 +96,7 @@ function getPokemonBySpecies (id) {
   let poke = pokemon.filter(p => {
     return p.species_id === id
   })[0]
-  return getPokemonByNmae(poke.name)
+  return getPokemonByName(poke.name)
 }
 
 function getTypes (poke) {
@@ -142,16 +150,32 @@ function getAbilities (poke) {
 }
 
 function getEvolution (poke) {
-  let evo = Evolution
-    .filter(e => {
-      return e.id === poke.speciesId
+  let chain = []
+  chains.forEach((ch, index) => {
+    ch.forEach(c => {
+      if (c.id === poke.speciesId) chain = chains[index]
     })
-  console.log(evo)
-  return evo
+  })
+  let links = chain
+    .map(c => {
+      return Evolution.filter(e => {
+        return e.evolved_species_id === c.id
+      })[0]
+    })
+    .filter(c => {
+      return c !== undefined
+    })
+  let pokes = chain.map(c => {
+    return getPokemonByName(c.identifier)
+  })
+  return {
+    pokes,
+    links
+  }
 }
 
 function getPokemonDetails (name) {
-  let poke = getPokemonByNmae(name)
+  let poke = getPokemonByName(name)
   return {
     types: getTypes(poke),
     eggGroups: getEggGroups(poke),
@@ -171,7 +195,7 @@ function setGenerations (gens) {
 export default {
   generations: Object.keys(GENERATIONS),
   setGenerations,
-  pokemon: getPokemonByNmae,
+  pokemon: getPokemonByName,
   pokemonDetails: getPokemonDetails,
   pokemonList
 }
