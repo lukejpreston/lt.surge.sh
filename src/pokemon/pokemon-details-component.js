@@ -47,8 +47,8 @@ let PokemonDetails = ({details, goBack}) => {
             } else {
               let link = details.evolution.links[chainLink]
               chainLink += 1
+              return <span key={`chain-${index}`}>{link}</span>
             }
-            return null
           })
       }</div>
     </div>

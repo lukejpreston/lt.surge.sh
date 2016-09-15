@@ -43,7 +43,9 @@ let chains = []
 PokemonSpecies.forEach(ps => {
   let chainId = parseInt(ps.evolution_chain_id, 10)
   chains[chainId] = chains[chainId] || []
-  chains[chainId].push(ps)
+  ps.order = parseInt(ps.evolves_from_species_id, 10) || -1
+  if (ps.order === -1) chains[chainId] = [ps].concat(chains[chainId])
+  else chains[chainId].push(ps)
 })
 
 function getIndex (number) {
@@ -90,13 +92,6 @@ function getPokemonByName (name) {
     image,
     flavour: getFlavour(poke)
   }
-}
-
-function getPokemonBySpecies (id) {
-  let poke = pokemon.filter(p => {
-    return p.species_id === id
-  })[0]
-  return getPokemonByName(poke.name)
 }
 
 function getTypes (poke) {
@@ -165,7 +160,21 @@ function getEvolution (poke) {
     .filter(c => {
       return c !== undefined
     })
+    .map(c => {
+      let trigger = evolutionTrigger.filter(et => {
+        return et.evolution_trigger_id === c.evolution_trigger_id
+      })[0].name
+
+      let link = []
+      Object.keys(c)
+        .forEach(key => {
+          if (c[key] !== '0' && c[key] !== '' && key !== 'evolved_species_id' && key !== 'evolution_trigger_id' && key !== 'id') link.push(c[key])
+        })
+
+      return `${trigger}: ${link.join(', ')}`
+    })
   let pokes = chain.map(c => {
+    console.log(c)
     return getPokemonByName(c.identifier)
   })
   return {
