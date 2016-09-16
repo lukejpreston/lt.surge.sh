@@ -13,13 +13,9 @@ import Evolution from './data/pokemon_evolution.json'
 import EvolutionTrigger from './data/evolution_trigger_prose.json'
 import PokemonSpecies from './data/pokemon_species.json'
 import Encounters from './data/encounters.json'
-// import EncounterSlots from './data/encounter_slots.json'
-// import EncounterMethods from './data/encounter_methods.json'
-// import EncounterConditions from './data/encounter_conditions.json'
-// import LocatonAreaEncounter from './data/location_area_encounter_rates.json'
-// import LocationsAreaProse from './data/location_area_prose.json'
 import Locations from './data/locations.json'
-// import EncounterConditionsMap from './data/encounter_condition_value_map.json'
+import BaseStats from './data/pokemon_stats.json'
+import Stats from './data/stat_names.json'
 
 function filterLanguage (ls) {
   return ls.filter(l => {
@@ -37,7 +33,7 @@ const eggGroups = filterLanguage(EggGroups)
 const abilities = filterLanguage(Abilities)
 const abilityProes = filterLanguage(AbilityProes)
 const evolutionTrigger = filterLanguage(EvolutionTrigger)
-// const locations = filterLanguage(LocationsAreaProse)
+const stats = filterLanguage(Stats)
 
 const GENERATIONS = {
   I: '1',
@@ -214,6 +210,26 @@ function getEncounter (poke) {
   return encs
 }
 
+function getStats (poke) {
+  return BaseStats
+    .filter(bs => {
+      return bs.pokemon_id === poke.id
+    })
+    .map(bs => {
+      let name = stats
+        .filter(s => {
+          return s.stat_id === bs.stat_id
+        })
+        .map(s => {
+          return s
+        })[0].name
+      return {
+        name,
+        value: bs.base_stat
+      }
+    })
+}
+
 function getPokemonDetails (name) {
   let poke = getPokemonByName(name)
 
@@ -222,7 +238,8 @@ function getPokemonDetails (name) {
     eggGroups: getEggGroups(poke),
     abilities: getAbilities(poke),
     evolution: getEvolution(poke),
-    encounters: getEncounter(poke)
+    encounters: getEncounter(poke),
+    stats: getStats(poke)
   }
 }
 

@@ -56,6 +56,14 @@ let PokemonDetails = ({details, goBack}) => {
           return <button key={`encounter-${index}`}>{e}</button>
         })
       }</div>
+      <div className='block stats'>{
+        details.stats.map((s, index) => {
+          return <div key={`stat-${index}`}>
+            <button>{s.name}</button>
+            <button>{s.value}</button>
+          </div>
+        })
+    }</div>
     </div>
   </div>
 }
