@@ -1,3 +1,4 @@
+import changeCase from 'change-case'
 import Pokemon from './data/pokemon.json'
 import PokemonSpeciesNames from './data/pokemon_species_names.json'
 import PokemonSpeciesFlavour from './data/pokemon_species_flavor_text.json'
@@ -11,6 +12,14 @@ import PokemonAbilities from './data/pokemon_abilities.json'
 import Evolution from './data/pokemon_evolution.json'
 import EvolutionTrigger from './data/evolution_trigger_prose.json'
 import PokemonSpecies from './data/pokemon_species.json'
+import Encounters from './data/encounters.json'
+// import EncounterSlots from './data/encounter_slots.json'
+// import EncounterMethods from './data/encounter_methods.json'
+// import EncounterConditions from './data/encounter_conditions.json'
+// import LocatonAreaEncounter from './data/location_area_encounter_rates.json'
+// import LocationsAreaProse from './data/location_area_prose.json'
+import Locations from './data/locations.json'
+// import EncounterConditionsMap from './data/encounter_condition_value_map.json'
 
 function filterLanguage (ls) {
   return ls.filter(l => {
@@ -28,6 +37,7 @@ const eggGroups = filterLanguage(EggGroups)
 const abilities = filterLanguage(Abilities)
 const abilityProes = filterLanguage(AbilityProes)
 const evolutionTrigger = filterLanguage(EvolutionTrigger)
+// const locations = filterLanguage(LocationsAreaProse)
 
 const GENERATIONS = {
   I: '1',
@@ -174,7 +184,6 @@ function getEvolution (poke) {
       return `${trigger}: ${link.join(', ')}`
     })
   let pokes = chain.map(c => {
-    console.log(c)
     return getPokemonByName(c.identifier)
   })
   return {
@@ -183,13 +192,37 @@ function getEvolution (poke) {
   }
 }
 
+function getEncounter (poke) {
+  let encs = []
+  Encounters
+    .filter(e => {
+      return e.pokemon_id === poke.id
+    })
+    .map(e => {
+      let location = Locations.filter(l => {
+        return l.id === e.location_area_id
+      })[0]
+      if (location) return changeCase.titleCase(location.identifier)
+      return ''
+    })
+    .filter(e => {
+      return e !== ''
+    })
+    .forEach(e => {
+      if (!encs.includes(e)) encs.push(e)
+    })
+  return encs
+}
+
 function getPokemonDetails (name) {
   let poke = getPokemonByName(name)
+
   return {
     types: getTypes(poke),
     eggGroups: getEggGroups(poke),
     abilities: getAbilities(poke),
-    evolution: getEvolution(poke)
+    evolution: getEvolution(poke),
+    encounters: getEncounter(poke)
   }
 }
 
