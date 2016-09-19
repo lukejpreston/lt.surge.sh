@@ -1,8 +1,7 @@
 import reducer from '../reducer'
-import dexter from '../dexter'
-
+import pokemonDetails from '../data/pokemon-details.json'
 let initialState = {
-  list: dexter.pokemonList,
+  list: pokemonDetails,
   preview: {
     to: '/pokemon/lt.surge',
     image: require('../sprites/thunder-stone.json'),
@@ -22,7 +21,9 @@ export default reducer({
 
       if (showPreview) {
         let name = action.payload.pathname.replace('/pokemon/preview/', '').toLowerCase()
-        let pokemon = dexter.pokemon(name)
+        let pokemon = pokemonDetails.filter(p => {
+          return p.identifier === name
+        })[0]
         return {
           list: state.list,
           preview: {
@@ -34,12 +35,13 @@ export default reducer({
         }
       } else if (showDetails) {
         let name = action.payload.pathname.replace('/pokemon/', '').toLowerCase()
-        let pokemon = dexter.pokemon(name)
-        let details = dexter.pokemonDetails(name)
+        let pokemon = pokemonDetails.filter(p => {
+          return p.identifier === name
+        })[0]
         return {
           list: initialState.list,
           preview: initialState.preview,
-          details: Object.assign({}, pokemon, details)
+          details: pokemon
         }
       } else if (showDefault) {
         return initialState
