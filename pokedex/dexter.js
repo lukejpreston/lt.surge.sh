@@ -20,6 +20,9 @@ const Locations = require(path.join(dataOutput, 'locations.json'))
 const BaseStats = require(path.join(dataOutput, 'pokemon_stats.json'))
 const Stats = require(path.join(dataOutput, 'stat_names.json'))
 
+const Forms = require(path.join(dataOutput, 'pokemon_forms.json'))
+const FormsNames = require('../src/data/pokemon_form_names.json')
+
 function filterLanguage (ls) {
   return ls.filter(l => {
     return l.local_language_id === '9' || l.language_id === '9'
@@ -37,6 +40,8 @@ const eggGroups = filterLanguage(EggGroups)
 const abilities = filterLanguage(Abilities)
 const abilityProes = filterLanguage(AbilityProes)
 const evolutionTrigger = filterLanguage(EvolutionTrigger)
+const formsNames = filterLanguage(FormsNames)
+
 const stats = filterLanguage(Stats)
 
 let chains = []
@@ -83,18 +88,11 @@ function getPokemonByName (name) {
   let pByName = pokemonSpeciesNames.filter(p => {
     return p.name === name
   })[0]
-  if (pByName === undefined) {
-    console.log('boop', name)
-    return {}
-  }
 
   let poke = pokemon.filter(p => {
     return p.species_id === pByName.pokemon_species_id
   })[0]
-  if (poke === undefined) {
-    console.log(name)
-    return {}
-  }
+
   let image = require(path.join(dataOutput, `../sprites/${poke.id}.json`))
   return {
     identifier: poke.identifier,

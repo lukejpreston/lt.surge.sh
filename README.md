@@ -8,9 +8,13 @@
 * abilities
 * evolution
 * encounter
+* base stats
+* forms:
+  * abilities
+  * stats
+  * image
 * moves:
   * level
   * tm
   * egg
   * special
-* base stats

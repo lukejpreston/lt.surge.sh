@@ -5,10 +5,13 @@ const dataOutput = path.join(__dirname, '../src/data')
 
 let pokemonDetails = dexter.pokemonList
   .map(p => {
-    return Object.assign({}, p, dexter.getPokemonDetails(p.name))
+    let details = dexter.getPokemonDetails(p.name)
+    let pokemon = Object.assign({}, p, details)
+    if (details.identifier === 'castform') console.log(pokemon.evolution)
+    return pokemon
   })
 
-fs.writeFileSync(
-  path.join(dataOutput, 'pokemon-details.json'),
-  JSON.stringify(pokemonDetails, null, 4)
-)
+// fs.writeFileSync(
+//   path.join(dataOutput, 'pokemon-details.json'),
+//   JSON.stringify(pokemonDetails, null, 4)
+// )
