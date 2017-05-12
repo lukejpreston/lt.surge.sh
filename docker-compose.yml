@@ -1,0 +1,9 @@
+version: '2'
+services:
+  lt.surge.sh:
+    build: .
+    volumes:
+      - ./:/usr/src/lt.surge.sh
+      - /usr/src/lt.surge.sh/node_modules
+    ports:
+      - "3000:3000"
