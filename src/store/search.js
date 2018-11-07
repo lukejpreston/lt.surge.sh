@@ -2,9 +2,9 @@ import { useState } from 'react'
 import fuzzy from 'fuzzy'
 
 const arr = Array.apply(null, Array(151)).map((x, i) => `${i} Loading ...`)
+let router
 
 const Search = () => {
-  let router
   const [indexes, setIndexes] = useState(arr)
   const [suggestions, setSuggestions] = useState([])
   const [input, setInput] = useState('')
