@@ -13,11 +13,10 @@ const Store = () => {
     router: (router) => {
       const newRoute = `${router.location.pathname}?${router.location.search}#${router.location.hash}`
       if (currentRoute !== newRoute) {
-        search.setRouter(router)
-        pokemon.setRouter(router)
+        search.updateRoute(router)
+        pokemon.updateRoute(router)
         currentRoute = newRoute
       }
-
       return null
     }
   }

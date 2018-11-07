@@ -42,7 +42,7 @@ const Search = () => {
   return {
     ...state,
     ...actions,
-    setRouter (newRouter) {
+    updateRoute (newRouter) {
       router = newRouter
     }
   }

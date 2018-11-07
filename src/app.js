@@ -8,7 +8,7 @@ import Pokemon from './components/pokemon'
 const App = () => {
   const store = Store()
   return <div>
-    <Router >
+    <Router>
       <div>
         <Switch>
           <Route path='/' exact>
