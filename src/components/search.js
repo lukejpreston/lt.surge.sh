@@ -9,13 +9,13 @@ const Input = ({ onChange, large, input }) => <input
 />
 
 const Suggestion = ({ pokemon, onClick }) => <button
-  className='button'
+  className={`suggestion button is-fullwidth is-${pokemon.includes('loading') ? 'loading' : 'done'}`}
   to={`/${pokemon.split(' ')[0]}`}
   onClick={() => onClick(pokemon)}>{
     title(pokemon)
   }</button>
 
-const Suggestions = ({ suggestions, onClick }) => <div>
+const Suggestions = ({ suggestions, onClick }) => <div className='suggestions'>
   {suggestions.map((pokemon, index) => <Suggestion key={`${pokemon}-${index}`} pokemon={pokemon} onClick={onClick} />)}
 </div>
 

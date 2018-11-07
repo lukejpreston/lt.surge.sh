@@ -6,3 +6,16 @@ body {
   font-family: 'Luckiest Guy', cursive !important;
   letter-spacing: 0.1em;
 }
+
+.about {
+  margin-top: 100px;
+}
+
+.suggestions {
+  max-height: 230px;
+  overflow: auto;
+}
+
+.suggestion {
+  margin-top: 10px;
+}

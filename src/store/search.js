@@ -25,8 +25,12 @@ const Search = () => {
       setInput(value)
       if (value === '') setSuggestions([])
       else {
-        const matches = fuzzy.filter(value.toLowerCase(), indexes)
-        setSuggestions(matches.map(m => m.string))
+        if (indexes[0] === '0 Loading ...') {
+          setSuggestions(['loading'])
+        } else {
+          const matches = fuzzy.filter(value.toLowerCase(), indexes)
+          setSuggestions(matches.map(m => m.string))
+        }
       }
     },
     updateRoute (newRouter) {
