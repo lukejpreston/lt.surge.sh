@@ -1,24 +1,16 @@
 import Search from './search'
 import Pokemon from './pokemon'
-
-let currentRoute
+import Router from './router'
 
 const Store = () => {
   const search = Search()
   const pokemon = Pokemon()
 
+  const store = { pokemon, search }
+
   return {
-    ...pokemon,
-    ...search,
-    router: (router) => {
-      const newRoute = `${router.location.pathname}?${router.location.search}#${router.location.hash}`
-      if (currentRoute !== newRoute) {
-        search.updateRoute(router)
-        pokemon.updateRoute(router)
-        currentRoute = newRoute
-      }
-      return null
-    }
+    ...store,
+    router: Router(store)
   }
 }
 

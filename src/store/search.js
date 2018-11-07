@@ -31,19 +31,18 @@ const Search = () => {
     }
   }
 
-  if (indexes[0].name === '') {
-    fetch(`${process.env.REACT_APP_API}/pokemon/`)
-      .then(res => res.json())
-      .then(res => {
-        setIndexes(res.results.slice(0, 151).map((p, index) => `${index + 1} ${p.name}`))
-      })
-  }
-
   return {
     ...state,
     ...actions,
     updateRoute (newRouter) {
       router = newRouter
+      if (indexes[0] === '0 Loading ...') {
+        fetch(`${process.env.REACT_APP_API}/pokemon/`)
+          .then(res => res.json())
+          .then(res => {
+            setIndexes(res.results.slice(0, 151).map((p, index) => `${index + 1} ${p.name}`))
+          })
+      }
     }
   }
 }

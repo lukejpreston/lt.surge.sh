@@ -4,7 +4,7 @@ const Pokemon = () => {
   const [pokemon, setPokemon] = useState({ index: -1 })
 
   const state = {
-    pokemon
+    ...pokemon
   }
 
   return {
@@ -15,14 +15,17 @@ const Pokemon = () => {
         name: 'Loading ...',
         index
       })
-      fetch(`${process.env.REACT_APP_API}/pokemon/${index}/`)
-        .then(res => res.json())
-        .then(res => {
-          setPokemon({
-            name: res.name,
-            index
+
+      if (index > 0 && index < 152) {
+        fetch(`${process.env.REACT_APP_API}/pokemon/${index}/`)
+          .then(res => res.json())
+          .then(res => {
+            setPokemon({
+              name: res.name,
+              index
+            })
           })
-        })
+      }
     }
   }
 }
