@@ -16,10 +16,12 @@ const Search = () => {
   }
   const actions = {
     onClick (pokemon) {
-      setSuggestions([])
-      setInput('')
-      const index = pokemon.split(' ')[0]
-      router.history.push(`/${index}`)
+      if (pokemon !== 'loading' && pokemon !== 'error') {
+        setSuggestions([])
+        setInput('')
+        const index = pokemon.split(' ')[0]
+        router.history.push(`/${index}`)
+      }
     },
     onChange (value) {
       setInput(value)
@@ -27,6 +29,8 @@ const Search = () => {
       else {
         if (indexes[0] === '0 Loading ...') {
           setSuggestions(['loading'])
+        } else if (indexes[0] === 'error') {
+          setSuggestions(['error: Could connect to PokeAPI'])
         } else {
           const matches = fuzzy.filter(value.toLowerCase(), indexes)
           setSuggestions(matches.map(m => m.string))
@@ -40,6 +44,9 @@ const Search = () => {
           .then(res => res.json())
           .then(res => {
             setIndexes(res.results.slice(0, 151).map((p, index) => `${index + 1} ${p.name}`))
+          })
+          .catch(() => {
+            setIndexes(['error'])
           })
       }
     }

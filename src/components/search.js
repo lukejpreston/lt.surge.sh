@@ -9,8 +9,7 @@ const Input = ({ onChange, large, input }) => <input
 />
 
 const Suggestion = ({ pokemon, onClick }) => <button
-  className={`suggestion button is-fullwidth is-${pokemon.includes('loading') ? 'loading' : 'done'}`}
-  to={`/${pokemon.split(' ')[0]}`}
+  className={`suggestion button is-fullwidth is-${pokemon.includes('loading') ? 'loading' : 'done'} is-${pokemon.includes('error') ? 'danger' : 'default'}`}
   onClick={() => onClick(pokemon)}>{
     title(pokemon)
   }</button>
