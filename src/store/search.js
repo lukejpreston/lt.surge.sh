@@ -28,12 +28,7 @@ const Search = () => {
         const matches = fuzzy.filter(value.toLowerCase(), indexes)
         setSuggestions(matches.map(m => m.string))
       }
-    }
-  }
-
-  return {
-    ...state,
-    ...actions,
+    },
     updateRoute (newRouter) {
       router = newRouter
       if (indexes[0] === '0 Loading ...') {
@@ -44,6 +39,11 @@ const Search = () => {
           })
       }
     }
+  }
+
+  return {
+    ...state,
+    ...actions
   }
 }
 

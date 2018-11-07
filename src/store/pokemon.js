@@ -7,8 +7,7 @@ const Pokemon = () => {
     ...pokemon
   }
 
-  return {
-    ...state,
+  const actions = {
     updateRoute (router) {
       const index = parseInt(router.location.pathname.replace('/', ''), 10)
       setPokemon({
@@ -27,6 +26,11 @@ const Pokemon = () => {
           })
       }
     }
+  }
+
+  return {
+    ...state,
+    ...actions
   }
 }
 
