@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import './app.css'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import fuzzy from 'fuzzy'
-import { title } from 'change-case'
 
-const arr = Array.apply(null, Array(151)).map((x, i) => ({ name: '' }))
+import Home from './components/home'
+import Pokemon from './components/pokemon'
+
+const arr = Array.apply(null, Array(151)).map((x, i) => `${i} Loading ...`)
 
 const Store = () => {
   let router
@@ -70,38 +71,6 @@ const Store = () => {
   }
 }
 
-const Header = ({ suggestions = [], onChange, titleLabel = 'LT.SURGE.SH', onClick }) => {
-  return <section className='section'>
-    <div className='container'>
-      <h1 className='title is-1 has-text-centered luckiest'>{titleLabel}</h1>
-      <div>
-        <h2 className='subtitle is-4 has-text-centered'>Welcome to the simple pokedex powered by the poke api</h2>
-        <Search onChange={onChange} large />
-        <Suggestions suggestions={suggestions} onClick={onClick} />
-      </div>
-    </div>
-  </section>
-}
-
-const Search = ({ onChange, large, input }) => <input className={`input is-${large ? 'large' : 'normal'}`} placeholder='Pokemon Name or Index' onChange={evt => onChange(evt.target.value)} value={input} />
-
-const Suggestions = ({ suggestions, onClick }) => <div>
-  {suggestions.map((pokemon, index) => {
-    return <div key={`${pokemon}-${index}`}>
-      <button className='button' to={`/${pokemon.split(' ')[0]}`} onClick={() => onClick(pokemon)}>{title(pokemon)}</button>
-    </div>
-  })}
-</div>
-
-const Pokemon = ({ suggestions = [], onChange, onClick, input, pokemon }) => {
-  return <div>
-    <Link to='/'>Home</Link>
-    <Search onChange={onChange} input={input} />
-    <Suggestions suggestions={suggestions} onClick={onClick} />
-    <span>{pokemon.name}</span>
-  </div>
-}
-
 const App = () => {
   const store = Store()
   return <div>
@@ -109,9 +78,9 @@ const App = () => {
       <div>
         <Switch>
           <Route path='/' exact>
-            <Header {...store} />
+            <Home {...store} />
           </Route>
-          <Route path='/:index' exact>
+          <Route path='/:index'>
             <Pokemon {...store} />
           </Route>
         </Switch>
