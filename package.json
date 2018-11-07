@@ -25,7 +25,12 @@
     "extends": [
       "standard",
       "standard-react"
-    ]
+    ],
+    "env": {
+      "browser": true,
+      "jest": true,
+      "jasmine": true
+    }
   },
   "browserslist": [
     ">0.2%",
