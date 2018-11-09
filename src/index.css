@@ -4,7 +4,12 @@ body {
 
 .luckiest {
   font-family: 'Luckiest Guy', cursive !important;
-  letter-spacing: 0.1em;
+}
+
+.lt-title {
+  color: #f3d47a;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  letter-spacing: 0.12em;
 }
 
 .about {
@@ -18,4 +23,198 @@ body {
 
 .suggestion {
   margin-top: 10px;
+}
+
+.name {
+  color: #fff;
+  text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333;
+}
+
+.name-index {
+  font-size: 36px;
+  margin-right: 12px;
+  letter-spacing: 0.05em;
+}
+
+.name-head {
+  font-size: 96px;
+  margin-right: 5px;
+}
+
+.name.is-normal {
+  color: #A8A878;
+}
+
+.name.is-fire {
+  color: #F08030;
+}
+
+.name.is-fighting {
+  color: #C03028;
+}
+
+.name.is-water {
+  color: #6890F0;
+}
+
+.name.is-flying {
+  color: #A890F0;
+}
+
+.name.is-grass {
+  color: #78C850;
+}
+
+.name.is-poison {
+  color: #A040A0;
+}
+
+.name.is-electric {
+  color: #F8D030;
+}
+
+.name.is-ground {
+  color: #E0C068;
+}
+
+.name.is-psychic {
+  color: #F85888;
+}
+
+.name.is-rock {
+  color: #B8A038;
+}
+
+.name.is-ice {
+  color: #98D8D8;
+}
+
+.name.is-bug {
+  color: #A8B820;
+}
+
+.name.is-dragon {
+  color: #7038F8;
+}
+
+.name.is-ghost {
+  color: #705898;
+}
+
+.name.is-dark {
+  color: #705848;
+}
+
+.name.is-steel {
+  color: #B8B8D0;
+}
+
+.name.is-fairy {
+  color: #EE99AC;
+}
+
+.name-tail {
+  font-size: 36px;
+  letter-spacing: 0.1em;
+}
+
+.stat {
+  margin-top: 10px;
+  font-size: 22px;
+  letter-spacing: 0.05em;
+}
+
+.description {
+  margin-top: 2em;
+  font-size: 24px;
+  letter-spacing: 0.2rem;
+  line-height: 36px;
+}
+
+.image {
+  margin: auto;
+}
+
+.types {
+  margin-top: 46px;
+}
+
+.type {
+  font-size: 24px;
+  margin-right: 12px;
+  padding: 12px 24px;
+  border-radius: 90px;
+  color: #fff;
+}
+
+.type.is-normal {
+  background-color: #A8A878;
+}
+
+.type.is-fire {
+  background-color: #F08030;
+}
+
+.type.is-fighting {
+  background-color: #C03028;
+}
+
+.type.is-water {
+  background-color: #6890F0;
+}
+
+.type.is-flying {
+  background-color: #A890F0;
+}
+
+.type.is-grass {
+  background-color: #78C850;
+}
+
+.type.is-poison {
+  background-color: #A040A0;
+}
+
+.type.is-electric {
+  background-color: #F8D030;
+}
+
+.type.is-ground {
+  background-color: #E0C068;
+}
+
+.type.is-psychic {
+  background-color: #F85888;
+}
+
+.type.is-rock {
+  background-color: #B8A038;
+}
+
+.type.is-ice {
+  background-color: #98D8D8;
+}
+
+.type.is-bug {
+  background-color: #A8B820;
+}
+
+.type.is-dragon {
+  background-color: #7038F8;
+}
+
+.type.is-ghost {
+  background-color: #705898;
+}
+
+.type.is-dark {
+  background-color: #705848;
+}
+
+.type.is-steel {
+  background-color: #B8B8D0;
+}
+
+.type.is-fairy {
+  background-color: #EE99AC;
 }
