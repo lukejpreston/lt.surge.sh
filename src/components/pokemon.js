@@ -1,5 +1,6 @@
 import React from 'react'
 import { title } from 'change-case'
+import { Link } from 'react-router-dom'
 
 import Search from './search'
 import Name from './name'
@@ -9,12 +10,15 @@ const Pokemon = ({ search, pokemon }) => {
   if (pokemon.name.toLowerCase().includes('loading')) return <span>Loading</span>
   return <section className='section'>
     <div className='container'>
+      <Link to='/'>
+        <h1 className='lt-title title is-2 has-text-centered luckiest'>lt.surge.sh</h1>
+      </Link>
       <Search {...search} />
       <div className='columns'>
         <div className='column is-half'>
           <Name name={pokemon.name} type={pokemon.types[0]} index={pokemon.index} />
           <figure className='image is-128x128'>
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.index}.png`} alt={pokemon.name} />
+            <img src={pokemon.sprite} alt={pokemon.name} />
           </figure>
           <div className='types'>
             {pokemon.types.map(type => <span className={`type is-${type}`} key={type}>{title(type)}</span>)}

@@ -29,6 +29,7 @@ const Pokemon = () => {
           .then(res => res.json())
           .then(res => {
             const pokemon = {
+              sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`,
               name: res.name,
               index,
               image: res.sprites.front_default,
@@ -48,6 +49,14 @@ const Pokemon = () => {
 
         Promise.all([description, info]).then(res => {
           setPokemon({ description: res[0], ...res[1] })
+        })
+      } else if (index >= 152) {
+        setPokemon({
+          index: '???',
+          name: 'missingno',
+          types: [''],
+          description: 'We only hold the Kanto pokedex information, the page you are looking does not exist',
+          sprite: '/missingno.png'
         })
       }
     }
